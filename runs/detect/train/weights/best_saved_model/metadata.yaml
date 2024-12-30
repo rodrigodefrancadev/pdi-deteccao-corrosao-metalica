@@ -1,0 +1,24 @@
+description: Ultralytics YOLO11n model trained on C:/Users/rodri/.spyder-py3/datasets/Rust
+  Detection.v1i.yolov11/data.yaml
+author: Ultralytics
+date: '2024-12-30T13:13:59.206867'
+version: 8.3.40
+license: AGPL-3.0 License (https://ultralytics.com/license)
+docs: https://docs.ultralytics.com
+stride: 32
+task: detect
+batch: 1
+imgsz:
+- 640
+- 640
+names:
+  0: Rust
+  1: car
+  2: copper corrosion
+  3: corroded-part
+  4: corrosion
+  5: iron rust
+  6: mild-corrosion
+  7: moderate-corrosion
+  8: rust
+  9: severe-corrosion
