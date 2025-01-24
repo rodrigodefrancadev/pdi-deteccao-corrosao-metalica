@@ -35,7 +35,8 @@ def menu():
     
     print("Escolha uma opção abaixo:")
     for index, option in enumerate(options):
-        print(f"{index} - {option["label"]}")
+       # print(f"{index} - {option["label"]}")
+       print(str(index) + " - " + option["label"])
     
     selected_index_str = input("Opção: ")
     selected_index = int(selected_index_str)

@@ -1,7 +1,7 @@
 import cv2
 from ultralytics import YOLO
 
-model_path = "./runs/detect/train/weights/best.pt"
+model_path = "./runs/detect/train2/weights/best.pt"
 conf = 0.3
 
 # Configurar o modelo YOLO
@@ -16,6 +16,7 @@ if not cap.isOpened():
 
 # Configurar a janela de exibição
 cv2.namedWindow("Detecção em Tempo Real", cv2.WINDOW_NORMAL)
+cv2.resizeWindow("Detecção em Tempo Real", 800, 600)  # Define o tamanho da janela
 
 while True:
     # Ler um frame da câmera

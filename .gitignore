@@ -1,3 +1,4 @@
 /datasets
 /__pycache__
-/test_images/output
+/test_images/monoclass
+/test_images/multiclass

@@ -1,11 +1,9 @@
 import os
 from ultralytics import YOLO
 
-def test_model():
+def test_model(model_path, output_folder):
     # Configurações
-    model_path = "./runs/detect/train2/weights/best.pt"  # Substitua pelo caminho do seu modelo treinado
     input_folder = "./test_images/input"  # Pasta contendo as imagens
-    output_folder = "./test_images/output"  # Pasta para salvar os resultados
 
     # Carregar o modelo treinado
     model = YOLO(model_path)
@@ -24,4 +22,5 @@ def test_model():
     print("Teste concluído!")
 
 if __name__ == '__main__':
-    test_model()
+    test_model('./runs/detect/train/weights/best.pt', './test_images/multiclass')
+    test_model('./runs/detect/train2/weights/best.pt', './test_images/monoclass')
