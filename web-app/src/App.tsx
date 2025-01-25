@@ -1,15 +1,8 @@
 import "./App.css";
+import HomePage from "./pages/home";
 
 function App() {
-  return (
-    <>
-      <h1>Teste</h1>
-      <button>
-        <i>home</i>
-        <span>Button</span>
-      </button>
-    </>
-  );
+  return <HomePage />;
 }
 
 export default App;
