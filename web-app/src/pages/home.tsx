@@ -7,34 +7,36 @@ const HomePage: FC = () => {
 
   return (
     <div>
-      <img src="/img/ufma-logo.png" alt="UFMA Logo" width={120} />
-      <div className="space"></div>
-      <img
-        className="ecp-logo"
-        src="/img/ecp-ufma-logo.png"
-        alt="Logo da Engenharia da Computação"
-      />
-      <div className="space"></div>
-      <h3 className="">Detector de Corrosão Metálica</h3>
-      <h6 className="small">
-        Modelo de visão computacional treinado com a arquitetura YOLO versão 11.
-      </h6>
-      <div className="large-space"></div>
-      <div className="s">
-        <BotaoIniciarAplicacao />
+      <div className="sessao-1">
+        <img src="/img/ufma-logo.png" alt="UFMA Logo" width={120} />
         <div className="space"></div>
-        <BotaoInformacoes
-          onClick={() => maisInformacoesDialog.current?.mostrar()}
+        <img
+          className="ecp-logo"
+          src="/img/ecp-ufma-logo.png"
+          alt="Logo da Engenharia da Computação"
         />
+        <div className="space"></div>
+        <h3 className="">Detector de Corrosão Metálica</h3>
+        <h6 className="small">
+          Modelo de visão computacional treinado com a arquitetura YOLO versão
+          11.
+        </h6>
+        <div className="large-space"></div>
+        <div className="s">
+          <BotaoIniciarAplicacao />
+          <div className="space"></div>
+          <BotaoInformacoes
+            onClick={() => maisInformacoesDialog.current?.mostrar()}
+          />
+          <MaisInformacoesDialog ref={maisInformacoesDialog} />
+        </div>
+        <div className="m l">
+          <div style={{ display: "flex", flexDirection: "row" }}></div>
+          <BotaoIniciarAplicacao />
+          <BotaoInformacoes />
+        </div>
         <div className="large-space"></div>
         <ParticipantesSmall />
-        <MaisInformacoesDialog ref={maisInformacoesDialog} />
-      </div>
-      <div className="m l">
-        <div style={{ display: "flex", flexDirection: "row" }}></div>
-        <BotaoIniciarAplicacao />
-        <BotaoInformacoes />
-        <Participantes />
       </div>
     </div>
   );
