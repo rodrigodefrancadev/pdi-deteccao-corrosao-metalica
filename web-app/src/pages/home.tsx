@@ -1,9 +1,48 @@
-import { FC, forwardRef, useImperativeHandle, useRef, useState } from "react";
+import {
+  FC,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import "./home.css";
 import { participantes } from "../data";
 
 const HomePage: FC = () => {
   const maisInformacoesDialog = useRef<MaisInformacoesDialogRef>(null);
+
+  function iniciarAplicacao() {}
+
+  function navegarParaSessao1() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function navegarParaSessao2() {
+    const sessao2 = document.getElementById("sessao-2");
+    if (sessao2) {
+      const topPos = sessao2.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: topPos, behavior: "smooth" });
+    }
+  }
+
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      const offset = 100; // Define o offset desejado
+      if (window.scrollY > offset) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div>
@@ -23,7 +62,7 @@ const HomePage: FC = () => {
         </h6>
         <div className="large-space"></div>
         <div className="s">
-          <BotaoIniciarAplicacao />
+          <BotaoIniciarAplicacao onClick={iniciarAplicacao} />
           <div className="space"></div>
           <BotaoInformacoes
             onClick={() => maisInformacoesDialog.current?.mostrar()}
@@ -32,19 +71,37 @@ const HomePage: FC = () => {
         </div>
         <div className="m l">
           <div style={{ display: "flex", flexDirection: "row" }}></div>
-          <BotaoIniciarAplicacao />
-          <BotaoInformacoes />
+          <BotaoIniciarAplicacao onClick={iniciarAplicacao} />
+          <BotaoInformacoes onClick={navegarParaSessao2} />
         </div>
         <div className="large-space"></div>
         <ParticipantesSmall />
+      </div>
+      <div id="sessao-2" className="m l sessao-2 surface-container">
+        <div className="sessao-2-content">
+          <div className="large-space"></div>
+          <MaisInformacoesContent />
+        </div>
+      </div>
+
+      <div className="m l">
+        {scrolled && (
+          <button
+            className="circle extra secondary extend botao-voltar-inicio"
+            onClick={navegarParaSessao1}
+          >
+            <i>arrow_upward</i>
+            <span>Início</span>
+          </button>
+        )}
       </div>
     </div>
   );
 };
 
-const BotaoIniciarAplicacao: FC = () => {
+const BotaoIniciarAplicacao: FC<{ onClick?: () => void }> = ({ onClick }) => {
   return (
-    <button className="extra">
+    <button className="extra" onClick={onClick}>
       <i>
         <img src="/img/ia-stars-icon.svg" />
       </i>
@@ -64,7 +121,7 @@ const BotaoInformacoes: FC<{ onClick?: () => void }> = ({ onClick }) => {
 const Participantes: FC = () => {
   return (
     <div className="participantes-container">
-      <article className="large-width">
+      <article className="large-width surface-container-low">
         <h5 className="">Participantes</h5>
         <div className="space"></div>
         <hr></hr>
@@ -143,12 +200,6 @@ const MaisInformacoesDialog = forwardRef<MaisInformacoesDialogRef>((_, ref) => {
 
   const activeClass = open ? "active" : "";
 
-  function abrirRepositorioGithub() {
-    const url =
-      "https://github.com/rodrigodefrancadev/trabalho-processamento-de-imagens-deteccao-corrozao-metalica";
-    window.open(url, "_blank", "noopener,noreferrer");
-  }
-
   return (
     <dialog className={`max no-padding ${activeClass}`}>
       <div
@@ -171,40 +222,54 @@ const MaisInformacoesDialog = forwardRef<MaisInformacoesDialogRef>((_, ref) => {
           </nav>
         </header>
         <div className="padding" style={{ flex: 1, overflowY: "scroll" }}>
-          <h3 className="">Detector de Corrosão Metálica</h3>
-          <p>
-            Esta aplicação é o resultado de um projeto desenvolvido por alunos
-            da <b>Universidade Federal do Maranhão (UFMA)</b> no curso de{" "}
-            <b>Engenharia de Computação</b> como atividade avaliativa da
-            disciplina de <b>Processamento Digital de Imagens</b> ministrada
-            pelo professor <b>Haroldo Gomes</b>.
-          </p>
-          <p>
-            O objetivo é detectar corrosão metálica utilizando técnicas de visão
-            computacional e aprendizado de máquina. O modelo foi treinado com a
-            arquitetura YOLO versão 11, proporcionando uma boa precisão e
-            desempenho na identificação de áreas corroídas em imagens.
-          </p>
-
-          <p>O código fonte do projeto está disponibilizado no link abaixo.</p>
-
-          <div className="space"></div>
-
-          <button className="border secondary" onClick={abrirRepositorioGithub}>
-            <i>
-              <img src="/img/github-mark.png" />
-            </i>
-            Repositório do Projeto
-          </button>
-
-          <div className="large-space"></div>
-          <Participantes />
-          <div className="large-space"></div>
-          <div className="large-space"></div>
+          <MaisInformacoesContent />
         </div>
       </div>
     </dialog>
   );
 });
+
+const MaisInformacoesContent: FC = () => {
+  function abrirRepositorioGithub() {
+    const url =
+      "https://github.com/rodrigodefrancadev/trabalho-processamento-de-imagens-deteccao-corrozao-metalica";
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  return (
+    <>
+      <h3 className="">Detector de Corrosão Metálica</h3>
+      <p>
+        Esta aplicação é o resultado de um projeto desenvolvido por alunos da{" "}
+        <b>Universidade Federal do Maranhão (UFMA)</b> no curso de{" "}
+        <b>Engenharia de Computação</b> como atividade avaliativa da disciplina
+        de <b>Processamento Digital de Imagens</b> ministrada pelo professor{" "}
+        <b>Haroldo Gomes</b>.
+      </p>
+      <p>
+        O objetivo é detectar corrosão metálica utilizando técnicas de visão
+        computacional e aprendizado de máquina. O modelo foi treinado com a
+        arquitetura YOLO versão 11, proporcionando uma boa precisão e desempenho
+        na identificação de áreas corroídas em imagens.
+      </p>
+
+      <p>O código fonte do projeto está disponibilizado no link abaixo.</p>
+
+      <div className="space"></div>
+
+      <button className="border secondary" onClick={abrirRepositorioGithub}>
+        <i>
+          <img src="/img/github-mark.png" />
+        </i>
+        Repositório do Projeto
+      </button>
+
+      <div className="large-space"></div>
+      <Participantes />
+      <div className="large-space"></div>
+      <div className="large-space"></div>
+    </>
+  );
+};
 
 export default HomePage;

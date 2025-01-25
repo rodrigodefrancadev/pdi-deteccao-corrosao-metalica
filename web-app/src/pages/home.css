@@ -19,4 +19,25 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sessao-2 {
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.sessao-2-content {
+  padding: 16px;
+  max-width: 660px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.botao-voltar-inicio {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
 }
