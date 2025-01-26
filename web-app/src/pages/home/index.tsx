@@ -6,13 +6,17 @@ import {
   useRef,
   useState,
 } from "react";
-import "./home.css";
-import { participantes } from "../data";
+import "./styles.css";
+import { participantes } from "../../data";
+import useAppContext from "../../hooks/use-app-context";
+import { Pagina } from "../../contexts/app/types";
 
 const HomePage: FC = () => {
   const maisInformacoesDialog = useRef<MaisInformacoesDialogRef>(null);
-
-  function iniciarAplicacao() {}
+  const { navegarPara } = useAppContext();
+  function iniciarAplicacao() {
+    navegarPara(Pagina.APP);
+  }
 
   function navegarParaSessao1() {
     window.scrollTo({ top: 0, behavior: "smooth" });
