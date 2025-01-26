@@ -10,7 +10,7 @@ export default function updateCanvas(
 
   if (detectorService.podeDetectar) {
     const base64Img = canvas.toDataURL();
-    detectorService.detectar(base64Img, 0.2);
+    detectorService.detectar(base64Img);
   }
 
   for (const boundbox of detectorService.boundboxes) {

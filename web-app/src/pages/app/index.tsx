@@ -20,7 +20,7 @@ const AppPage: FC = () => {
           <button className="circle transparent" onClick={voltarParaHome}>
             <i>arrow_back</i>
           </button>
-          <h5 className="max">Detector de Corrosão Metálica</h5>
+          <h6 className="max">Detector de Corrosão Metálica</h6>
         </nav>
       </header>
       {!pronto && (

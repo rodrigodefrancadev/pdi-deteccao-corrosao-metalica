@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import updateCanvas from "./canvas-procedimentos";
+import SeletorDeConfianca from "./seletor-de-confianca";
 
 const Detector: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -82,6 +83,8 @@ const Detector: React.FC = () => {
         <>
           <video ref={videoRef} autoPlay style={{ display: "none" }} />
           <canvas ref={canvasRef} />
+          <div className="large-space"></div>
+          <SeletorDeConfianca />
         </>
       )}
     </div>

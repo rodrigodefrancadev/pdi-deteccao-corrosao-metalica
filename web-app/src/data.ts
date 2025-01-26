@@ -25,4 +25,6 @@ export const participantes = [
   },
 ];
 
-export const detectorApiUrl = "http://localhost:5000";
+export const detectorApiUrl = "http://192.168.1.5:5000";
+
+export const confiancaPadrao = 0.3;

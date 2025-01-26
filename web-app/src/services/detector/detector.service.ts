@@ -15,6 +15,7 @@ export default class DetectorService {
   private _boundboxAtuais: Boundbox[];
   private _ocupado: boolean;
   private _erroApi: boolean;
+  private _confianca: number;
 
   get boundboxes() {
     return this._boundboxAtuais;
@@ -28,25 +29,37 @@ export default class DetectorService {
     return this._erroApi;
   }
 
-  constructor(private detectorApi: DetectorApi) {
+  get confianca() {
+    return this._confianca;
+  }
+
+  public setConfianca(valor: number) {
+    if (valor > 1 || valor < 0) {
+      return;
+    }
+
+    this._confianca = valor;
+  }
+
+  constructor(private detectorApi: DetectorApi, confianca: number) {
     this._boundboxAtuais = [];
     this._ocupado = false;
     this._erroApi = false;
+    this._confianca = confianca;
   }
 
-  public async detectar(base64Img: string, confianca: number): Promise<void> {
+  public async detectar(base64Img: string): Promise<void> {
     if (this._ocupado) {
       return;
     }
 
     this._ocupado = true;
-    return;
+
     try {
       const novosBoundbox = await this.detectorApi.detectar(
         base64Img,
-        confianca
+        this._confianca
       );
-      console.log("novosBoundbox: ", novosBoundbox);
       this._boundboxAtuais = novosBoundbox;
       if (this._erroApi) {
         this._erroApi = false;
