@@ -25,6 +25,6 @@ export const participantes = [
   },
 ];
 
-export const detectorApiUrl = "https://free-suns-sort.loca.lt";
+export const detectorApiUrl = "https://3819-177-185-108-1.ngrok-free.app";
 
 export const confiancaPadrao = 0.3;
