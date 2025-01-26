@@ -25,6 +25,6 @@ export const participantes = [
   },
 ];
 
-export const detectorApiUrl = "http://192.168.1.5:5000";
+export const detectorApiUrl = "https://free-suns-sort.loca.lt";
 
 export const confiancaPadrao = 0.3;
