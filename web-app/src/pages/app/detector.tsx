@@ -35,6 +35,9 @@ const Detector: React.FC = () => {
     const drawVideoOnCanvas = () => {
       if (videoRef.current && canvasRef.current) {
         const context = canvasRef.current.getContext("2d");
+        console.log(
+          `Video: ${videoRef.current?.videoWidth}x${videoRef.current.videoHeight}; Canvas: ${canvasRef.current.width}x${canvasRef.current.height}`
+        );
         if (context) {
           context.drawImage(
             videoRef.current,

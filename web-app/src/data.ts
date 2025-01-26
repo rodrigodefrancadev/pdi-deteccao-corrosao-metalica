@@ -24,3 +24,5 @@ export const participantes = [
     cargo: "Aluno de Graduação",
   },
 ];
+
+export const detectorApiUrl = "http://localhost:5000";
