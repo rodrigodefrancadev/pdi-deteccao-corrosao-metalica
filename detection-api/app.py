@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from ultralytics import YOLO
 from detector import Detector
 from img_base64_to_matlike import img_base64_to_matlike
 
 app = Flask(__name__)
+CORS(app)
 
 # Carregar o modelo YOLO
 model = YOLO("./model.pt")  # Substitua pelo caminho correto do modelo

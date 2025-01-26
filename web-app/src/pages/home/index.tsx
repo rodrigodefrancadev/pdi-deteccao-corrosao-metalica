@@ -170,7 +170,7 @@ const ParticipantesSmall: FC = () => {
         }}
       >
         {participantes.map((participante) => (
-          <div style={{ cursor: "pointer" }}>
+          <div style={{ cursor: "pointer" }} key={participante.nome}>
             <img className="circle" src={participante.img} />
             <div className="tooltip max medium-space" style={{ maxWidth: 200 }}>
               <div>

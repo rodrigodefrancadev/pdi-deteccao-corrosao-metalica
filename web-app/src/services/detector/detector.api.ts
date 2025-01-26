@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { Boundbox, DetectorApi } from "./detector.service";
 
 export default class DetectorApiImp implements DetectorApi {
@@ -13,11 +13,12 @@ export default class DetectorApiImp implements DetectorApi {
       confianca,
     };
 
-    const response = await axios.post<unknown, ResponseData, RequestData>(
-      `${this.apiUrl}/detect`,
-      requestData
-    );
-    return response.data.boundboxes;
+    const response = await axios.post<
+      unknown,
+      AxiosResponse<ResponseData>,
+      RequestData
+    >(`${this.apiUrl}/detect`, requestData);
+    return response.data.data.boundboxes;
   }
 }
 

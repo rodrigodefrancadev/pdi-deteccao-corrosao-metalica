@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import updateCanvas from "./canvas-procedimentos";
 
 const Detector: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -35,23 +36,9 @@ const Detector: React.FC = () => {
     const drawVideoOnCanvas = () => {
       if (videoRef.current && canvasRef.current) {
         const context = canvasRef.current.getContext("2d");
-        console.log(
-          `Video: ${videoRef.current?.videoWidth}x${videoRef.current.videoHeight}; Canvas: ${canvasRef.current.width}x${canvasRef.current.height}`
-        );
+
         if (context) {
-          context.drawImage(
-            videoRef.current,
-            0,
-            0,
-            canvasRef.current.width,
-            canvasRef.current.height
-          );
-          const squareSize = canvasRef.current.width * 0.5;
-          const x = (canvasRef.current.width - squareSize) / 2;
-          const y = (canvasRef.current.height - squareSize) / 2;
-          context.strokeStyle = "red";
-          context.lineWidth = 5;
-          context.strokeRect(x, y, squareSize, squareSize);
+          updateCanvas(videoRef.current, canvasRef.current, context);
         }
       }
       requestAnimationFrameId = requestAnimationFrame(drawVideoOnCanvas);

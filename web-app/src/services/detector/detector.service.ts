@@ -3,7 +3,7 @@ export interface Boundbox {
   x2: number;
   y1: number;
   y2: number;
-  classe: number;
+  classe: string;
   confianca: number;
 }
 
@@ -13,30 +13,40 @@ export interface DetectorApi {
 
 export default class DetectorService {
   private _boundboxAtuais: Boundbox[];
-  private ocupado: boolean;
+  private _ocupado: boolean;
   private _erroApi: boolean;
 
   get boundboxes() {
     return this._boundboxAtuais;
   }
 
+  get podeDetectar() {
+    return !this._ocupado;
+  }
+
+  get erroApi() {
+    return this._erroApi;
+  }
+
   constructor(private detectorApi: DetectorApi) {
     this._boundboxAtuais = [];
-    this.ocupado = false;
+    this._ocupado = false;
     this._erroApi = false;
   }
 
   public async detectar(base64Img: string, confianca: number): Promise<void> {
-    if (this.ocupado) {
+    if (this._ocupado) {
       return;
     }
 
-    this.ocupado = true;
+    this._ocupado = true;
+    return;
     try {
       const novosBoundbox = await this.detectorApi.detectar(
         base64Img,
         confianca
       );
+      console.log("novosBoundbox: ", novosBoundbox);
       this._boundboxAtuais = novosBoundbox;
       if (this._erroApi) {
         this._erroApi = false;
@@ -47,7 +57,7 @@ export default class DetectorService {
         this._boundboxAtuais = [];
       }
     } finally {
-      this.ocupado = false;
+      this._ocupado = false;
     }
   }
 }
