@@ -1,9 +1,9 @@
-import { confiancaPadrao, detectorApiUrl } from "../../data";
-import DetectorApiImp from "./detector.api";
+import { confiancaPadrao, onnxModelUrl, onnxWasmUrl } from "../../data";
 import DetectorService from "./detector.service";
+import OnnxDetector from "./detectores/onnx-detector/onnx-detector";
 
-const apiUrl = detectorApiUrl;
-const detectorApi = new DetectorApiImp(apiUrl);
+const detectorApi = new OnnxDetector(onnxModelUrl, onnxWasmUrl);
+
 const detectorService = new DetectorService(detectorApi, confiancaPadrao);
 
 export default detectorService;

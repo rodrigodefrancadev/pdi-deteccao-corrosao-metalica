@@ -25,6 +25,7 @@ export const participantes = [
   },
 ];
 
-export const detectorApiUrl = "https://3819-177-185-108-1.ngrok-free.app";
+export const onnxModelUrl = "/onnx/model.onnx";
+export const onnxWasmUrl = "/onnx/wasm/ort-wasm-simd-threaded.wasm";
 
 export const confiancaPadrao = 0.3;

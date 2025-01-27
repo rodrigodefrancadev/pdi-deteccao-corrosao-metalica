@@ -36,7 +36,9 @@ const Detector: React.FC = () => {
 
     const drawVideoOnCanvas = () => {
       if (videoRef.current && canvasRef.current) {
-        const context = canvasRef.current.getContext("2d");
+        const context = canvasRef.current.getContext("2d", {
+          willReadFrequently: true,
+        });
 
         if (context) {
           updateCanvas(videoRef.current, canvasRef.current, context);
