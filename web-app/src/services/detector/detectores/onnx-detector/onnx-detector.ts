@@ -1,3 +1,4 @@
+import { classesDoModelo } from "../../../../data";
 import { ImageInput, Boundbox, Detector } from "../../types";
 
 export interface Detection {
@@ -42,7 +43,7 @@ export default class OnnxDetector implements Detector {
 
   private detectionToBoundBox(detection: Detection): Boundbox {
     const boundbox: Boundbox = {
-      classe: detection.classId.toString(),
+      classe: classesDoModelo[detection.classId] ?? "- - -",
       confianca: detection.confidence,
       x1: detection.box.x,
       y1: detection.box.y,

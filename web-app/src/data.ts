@@ -25,7 +25,17 @@ export const participantes = [
   },
 ];
 
-export const onnxModelUrl = "/onnx/model.onnx";
-export const onnxWasmUrl = "/onnx/wasm/ort-wasm-simd-threaded.wasm";
+export const classesDoModelo = [
+  "Rust",
+  "car",
+  "copper corrosion",
+  "corroded-part",
+  "corrosion",
+  "iron rust",
+  "mild-corrosion",
+  "moderate-corrosion",
+  "rust",
+  "severe-corrosion",
+];
 
 export const confiancaPadrao = 0.3;
