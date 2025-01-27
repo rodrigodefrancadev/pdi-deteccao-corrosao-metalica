@@ -126,7 +126,7 @@ const Participantes: FC = () => {
   return (
     <div className="participantes-container">
       <article className="large-width surface-container-low">
-        <h5 className="">Participantes</h5>
+        <h5 className="">Desenvolvido por</h5>
         <div className="space"></div>
         <hr></hr>
         <div className="space-small"></div>
@@ -158,7 +158,7 @@ const Participantes: FC = () => {
 const ParticipantesSmall: FC = () => {
   return (
     <div>
-      <h6>Participantes</h6>
+      <h6>Desenvolvido por</h6>
       <div
         style={{
           marginTop: 8,
