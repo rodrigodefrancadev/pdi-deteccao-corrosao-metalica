@@ -43,25 +43,22 @@ export default class DetectorService {
     }
 
     this._ocupado = true;
-    setTimeout(() => {
-      this.detectorApi
-        .detectar(imageInput, this._confianca)
-        .then((novosBoundbox) => {
-          this._boundboxAtuais = novosBoundbox;
-          if (this._erroApi) {
-            this._erroApi = false;
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          if (!this._erroApi) {
-            this._erroApi = true;
-            this._boundboxAtuais = [];
-          }
-        })
-        .finally(() => {
-          this._ocupado = false;
-        });
-    }, 1000);
+    try {
+      const novosBoundbox = await this.detectorApi.detectar(
+        imageInput,
+        this._confianca
+      );
+      this._boundboxAtuais = novosBoundbox;
+      if (this._erroApi) {
+        this._erroApi = false;
+      }
+    } catch {
+      if (!this._erroApi) {
+        this._erroApi = true;
+        this._boundboxAtuais = [];
+      }
+    } finally {
+      this._ocupado = false;
+    }
   }
 }
