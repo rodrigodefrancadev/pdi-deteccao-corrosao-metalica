@@ -1,5 +1,5 @@
 import detectorService from "../../services/detector";
-import { Boundbox } from "../../services/detector/detector.service";
+import { Boundbox, ImageInput } from "../../services/detector/types";
 
 export default function updateCanvas(
   video: HTMLVideoElement,
@@ -9,8 +9,15 @@ export default function updateCanvas(
   context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
   if (detectorService.podeDetectar) {
-    const base64Img = canvas.toDataURL();
-    detectorService.detectar(base64Img);
+    const imageInput: ImageInput = {
+      getBase64() {
+        return canvas.toDataURL();
+      },
+      getImageData() {
+        return context.getImageData(0, 0, 640, 640);
+      },
+    };
+    detectorService.detectar(imageInput);
   }
 
   for (const boundbox of detectorService.boundboxes) {

@@ -1,15 +1,4 @@
-export interface Boundbox {
-  x1: number;
-  x2: number;
-  y1: number;
-  y2: number;
-  classe: string;
-  confianca: number;
-}
-
-export interface DetectorApi {
-  detectar: (base64Img: string, confianca: number) => Promise<Boundbox[]>;
-}
+import { Boundbox, Detector, ImageInput } from "./types";
 
 export default class DetectorService {
   private _boundboxAtuais: Boundbox[];
@@ -41,36 +30,38 @@ export default class DetectorService {
     this._confianca = valor;
   }
 
-  constructor(private detectorApi: DetectorApi, confianca: number) {
+  constructor(private detectorApi: Detector, confianca: number) {
     this._boundboxAtuais = [];
     this._ocupado = false;
     this._erroApi = false;
     this._confianca = confianca;
   }
 
-  public async detectar(base64Img: string): Promise<void> {
+  public async detectar(imageInput: ImageInput): Promise<void> {
     if (this._ocupado) {
       return;
     }
 
     this._ocupado = true;
-
-    try {
-      const novosBoundbox = await this.detectorApi.detectar(
-        base64Img,
-        this._confianca
-      );
-      this._boundboxAtuais = novosBoundbox;
-      if (this._erroApi) {
-        this._erroApi = false;
-      }
-    } catch {
-      if (!this._erroApi) {
-        this._erroApi = true;
-        this._boundboxAtuais = [];
-      }
-    } finally {
-      this._ocupado = false;
-    }
+    setTimeout(() => {
+      this.detectorApi
+        .detectar(imageInput, this._confianca)
+        .then((novosBoundbox) => {
+          this._boundboxAtuais = novosBoundbox;
+          if (this._erroApi) {
+            this._erroApi = false;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          if (!this._erroApi) {
+            this._erroApi = true;
+            this._boundboxAtuais = [];
+          }
+        })
+        .finally(() => {
+          this._ocupado = false;
+        });
+    }, 10);
   }
 }
