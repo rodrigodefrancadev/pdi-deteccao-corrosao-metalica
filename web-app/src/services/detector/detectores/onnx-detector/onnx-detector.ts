@@ -1,46 +1,43 @@
-import * as ort from "onnxruntime-web";
 import { ImageInput, Boundbox, Detector } from "../../types";
-import OnnxruntimeWebYolo11, {
-  Detection,
-  IDetectionModel,
-} from "./onnxruntime-web-yolo11";
+
+export interface Detection {
+  classId: number;
+  confidence: number;
+  box: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  };
+}
+
+const worker = new Worker("worker.js");
 
 export default class OnnxDetector implements Detector {
-  private _detectionModel?: IDetectionModel;
-
-  constructor(private modelUrl: string, wasmUrl: string) {
-    ort.env.wasm.wasmPaths = {
-      wasm: wasmUrl,
-    };
-  }
-
   public async detectar(
     imageInput: ImageInput,
     confianca: number
   ): Promise<Boundbox[]> {
-    const inputTensor = this.imageInputToOnnxTensor(imageInput);
-    const model = await this.getModel();
-    const detections = await model.detect(inputTensor, confianca);
+    const imageData = imageInput.getImageData();
+    const detections = await new Promise<Detection[]>((resolve, reject) => {
+      worker.postMessage({ imageData, confidense: confianca });
+
+      // Ouça as mensagens do Worker
+      worker.onmessage = (event) => {
+        const { detections, error } = event.data;
+        if (error) {
+          reject(error);
+        } else {
+          resolve(detections as Detection[]);
+        }
+      };
+
+      worker.onerror = (err) => {
+        reject(err.message);
+      };
+    });
     const boundboxes = detections.map(this.detectionToBoundBox);
     return boundboxes;
-  }
-
-  private imageInputToOnnxTensor(imageInput: ImageInput): ort.Tensor {
-    const imageData = imageInput.getImageData();
-    const imageTensor = OnnxruntimeWebYolo11.imageDataToOnnxTensor(imageData);
-    return imageTensor;
-  }
-
-  private async getModel() {
-    if (this._detectionModel) {
-      return this._detectionModel;
-    }
-
-    const detectionModel = await OnnxruntimeWebYolo11.createDetectionModel(
-      this.modelUrl
-    );
-    this._detectionModel = detectionModel;
-    return detectionModel;
   }
 
   private detectionToBoundBox(detection: Detection): Boundbox {

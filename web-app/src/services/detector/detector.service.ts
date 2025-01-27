@@ -62,6 +62,6 @@ export default class DetectorService {
         .finally(() => {
           this._ocupado = false;
         });
-    }, 10);
+    }, 1000);
   }
 }

@@ -41,6 +41,7 @@ const Detector: React.FC = () => {
         });
 
         if (context) {
+          console.log("updatecanvas");
           updateCanvas(videoRef.current, canvasRef.current, context);
         }
       }
