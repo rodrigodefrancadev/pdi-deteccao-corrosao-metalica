@@ -3,6 +3,13 @@
 <p align="center">
     <img src="./readme-assets/banner.png" alt="Banner">
 </p>
+<p align="center">
+    <a href="https://pdi-deteccao-corrosao-metalica.onrender.com/" target="_blank" style="text-decoration: none;">
+        <button style="background-color: rgb(103, 80, 164); color: white; border: none; padding: 10px 20px; border-radius: 4px; font-size: 16px; cursor: pointer;">
+            Clique aqui para visualizar a aplicação
+        </button>
+    </a>
+</p>
 
 ## 📖 Sobre o Projeto
 
