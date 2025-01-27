@@ -6,7 +6,6 @@ from img_base64_to_matlike import img_base64_to_matlike
 
 app = Flask(__name__)
 CORS(app)
-
 # Carregar o modelo YOLO
 model = YOLO("./model.pt")  # Substitua pelo caminho correto do modelo
 detector = Detector(model)
@@ -36,4 +35,3 @@ def detect():
         }
     }
     return jsonify(responseBody)
-

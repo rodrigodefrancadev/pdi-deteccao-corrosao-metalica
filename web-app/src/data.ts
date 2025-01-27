@@ -6,6 +6,12 @@ export const participantes = [
     cargo: "Professor e Orientador",
   },
   {
+    nome: "Rodrigo de França",
+    email: "rodrigo.menezes@discente.ufma.br",
+    img: "/img/rodrigo.jpeg",
+    cargo: "Aluno de Graduação",
+  },
+  {
     nome: "Leia Cardoso",
     email: "leiacardoso21@gmail.com",
     img: "/img/leia.jpg",
@@ -15,12 +21,6 @@ export const participantes = [
     nome: "Isabel Araujo",
     email: "isabel.silva@discente.ufma.br",
     img: "/img/isabel.jpg",
-    cargo: "Aluno de Graduação",
-  },
-  {
-    nome: "Rodrigo de França",
-    email: "rodrigo.menezes@discente.ufma.br",
-    img: "/img/rodrigo.jpeg",
     cargo: "Aluno de Graduação",
   },
 ];
