@@ -57,7 +57,6 @@ const Detector: React.FC = () => {
     };
   }, []);
 
-  /*
   useEffect(() => {
     const resizeCanvas = () => {
       if (canvasRef.current) {
@@ -76,55 +75,21 @@ const Detector: React.FC = () => {
     };
   }, []);
 
-  */
   return (
     <div className="detector-container">
       {erro ? (
-        <p className="error-text" style={{ textAlign: "center" }}>
-          Permissão Negada! Para autorizar o acesso á câmera acesse as
-          configurações do seu navegador.
-        </p>
+        <div style={{ flex: 1, display: "grid", placeItems: "center" }}>
+          <p className="error-text" style={{ textAlign: "center" }}>
+            Permissão Negada! Para autorizar o acesso á câmera acesse as
+            configurações do seu navegador.
+          </p>
+        </div>
       ) : (
         <>
           <video ref={videoRef} autoPlay style={{ display: "none" }} />
-
-          <div
-            style={{
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              width: "100%",
-              maxWidth: "500px",
-            }}
-          >
-            <div className="large-space"></div>
-            <div className="large-space"></div>
-            <div
-              style={{
-                flex: 1,
-                width: "100%",
-                flexDirection: "column",
-                justifyContent: "center",
-              }}
-            >
-              <canvas
-                ref={canvasRef}
-                style={{ width: "100%", aspectRatio: 1 }}
-              />
-              <div className="large-space"></div>
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                }}
-              >
-                <SeletorDeConfianca />
-              </div>
-            </div>
-          </div>
+          <SeletorDeConfianca />
+          <div className="large-space"></div>
+          <canvas ref={canvasRef} />
         </>
       )}
     </div>

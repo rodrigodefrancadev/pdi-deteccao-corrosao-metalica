@@ -1,7 +1,7 @@
 import cv2
 from ultralytics import YOLO
 
-model_path = "./runs/detect/train2/weights/best.pt"
+model_path = "./runs/detect/train/weights/best.pt"
 conf = 0.3
 
 # Configurar o modelo YOLO

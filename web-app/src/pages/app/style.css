@@ -1,7 +1,6 @@
 .app-page-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
   height: 100vh;
 }
 
@@ -19,5 +18,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
 }

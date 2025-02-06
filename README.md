@@ -33,7 +33,7 @@ Contém os códigos relacionados ao **treinamento do modelo** YOLOv11.
 
 ### 📁 `detection-api`
 
-Uma API em **Python** criada com **Flask**, responsável por expor o modelo treinado para utilização em outros serviços.  
+Uma API em **Python** criada com **Flask**, responsável por expor o modelo treinado para teste.
 **Principais funcionalidades**:
 
 - Receber imagens para detecção.
@@ -57,7 +57,6 @@ Uma **aplicação web** que roda o modelo diretamente no navegador utilizando **
 | **Haroldo Gomes**     | haroldo.gbf@ufma.br              | Professor e Orientador | ![Haroldo](./web-app/public/img/haroldocracha.jpeg) |
 | **Rodrigo de França** | rodrigo.menezes@discente.ufma.br | Aluno de Graduação     | ![Rodrigo](./web-app/public/img/rodrigo.jpeg)       |
 | **Leia Cardoso**      | leiacardoso21@gmail.com          | Aluno de Graduação     | ![Leia](./web-app/public/img/leia.jpg)              |
-| **Isabel Araujo**     | isabel.silva@discente.ufma.br    | Aluno de Graduação     | ![Isabel](./web-app/public/img/isabel.jpg)          |
 
 ---
 
