@@ -22,5 +22,6 @@ def test_model(model_path, output_folder):
     print("Teste concluído!")
 
 if __name__ == '__main__':
-    test_model('./runs/detect/train/weights/best.pt', './test_images/multiclass')
-    test_model('./runs/detect/train2/weights/best.pt', './test_images/monoclass')
+    #test_model('./runs/detect/train/weights/best.pt', './test_images/multiclass')
+    #test_model('./runs/detect/train2/weights/best.pt', './test_images/monoclass')
+    test_model('./runs/detect/train4/weights/best.pt', './test_images/novo')

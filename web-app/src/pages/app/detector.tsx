@@ -83,12 +83,25 @@ const Detector: React.FC = () => {
           configurações do seu navegador.
         </p>
       ) : (
-        <>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
           <video ref={videoRef} autoPlay style={{ display: "none" }} />
-          <canvas ref={canvasRef} />
-          <div className="large-space"></div>
-          <SeletorDeConfianca />
-        </>
+          <div style={{ flex: 1, overflow: "hidden" }}>
+            <canvas ref={canvasRef} />
+          </div>
+          <div
+            style={{
+              position: "fixed",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            <SeletorDeConfianca />
+          </div>
+        </div>
       )}
     </div>
   );

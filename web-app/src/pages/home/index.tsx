@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 import "./styles.css";
-import { participantes } from "../../data";
+import { participantes, versao } from "../../data";
 import useAppContext from "../../hooks/use-app-context";
 import { Pagina } from "../../contexts/app/types";
 
@@ -271,6 +271,7 @@ const MaisInformacoesContent: FC = () => {
       <div className="large-space"></div>
       <Participantes />
       <div className="large-space"></div>
+      <p className="small">v${versao}</p>
       <div className="large-space"></div>
     </>
   );

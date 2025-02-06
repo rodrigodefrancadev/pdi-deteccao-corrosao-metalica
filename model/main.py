@@ -2,7 +2,8 @@ from ultralytics import YOLO
 from multiprocessing import Process
 from test_model import test_model
 
-data = "C:/Users/rodri/projects/processamento-de-imagens/ferrugem/datasets/Rust Detection.v1i.yolov11-monoclass/data.yaml"
+#data = "C:/Users/rodri/projects/processamento-de-imagens/ferrugem/datasets/Rust Detection.v1i.yolov11-monoclass/data.yaml"
+data = "C:/Detecao de Corrosao.v2i.yolov11/data.yaml"
 epochs=100
 imgsz=640
 
@@ -11,7 +12,7 @@ def train_model():
     model.train(data=data, epochs=epochs, imgsz=imgsz)
 
 def continue_training():
-    model = YOLO("./runs/detect/train/weights/last.pt")
+    model = YOLO("./runs/detect/train4/weights/last.pt")
     model.train(data=data, epochs=epochs, imgsz=imgsz)
 
 def menu(): 

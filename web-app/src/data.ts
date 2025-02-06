@@ -25,17 +25,8 @@ export const participantes = [
   },
 ];
 
-export const classesDoModelo = [
-  "Rust",
-  "car",
-  "copper corrosion",
-  "corroded-part",
-  "corrosion",
-  "iron rust",
-  "mild-corrosion",
-  "moderate-corrosion",
-  "rust",
-  "severe-corrosion",
-];
+export const classesDoModelo = ["Corr. Média", "Corr. Severa"];
 
 export const confiancaPadrao = 0.3;
+
+export const versao = "1.0.2";
