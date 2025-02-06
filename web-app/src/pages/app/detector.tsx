@@ -57,6 +57,7 @@ const Detector: React.FC = () => {
     };
   }, []);
 
+  /*
   useEffect(() => {
     const resizeCanvas = () => {
       if (canvasRef.current) {
@@ -75,6 +76,7 @@ const Detector: React.FC = () => {
     };
   }, []);
 
+  */
   return (
     <div className="detector-container">
       {erro ? (
@@ -83,25 +85,47 @@ const Detector: React.FC = () => {
           configurações do seu navegador.
         </p>
       ) : (
-        <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+        <>
           <video ref={videoRef} autoPlay style={{ display: "none" }} />
-          <div style={{ flex: 1, overflow: "hidden" }}>
-            <canvas ref={canvasRef} />
-          </div>
+
           <div
             style={{
-              position: "fixed",
-              bottom: 0,
-              left: 0,
-              right: 0,
+              flex: 1,
               display: "flex",
-              flexDirection: "row",
+              flexDirection: "column",
               justifyContent: "center",
+              width: "100%",
+              maxWidth: "500px",
             }}
           >
-            <SeletorDeConfianca />
+            <div className="large-space"></div>
+            <div className="large-space"></div>
+            <div
+              style={{
+                flex: 1,
+                width: "100%",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
+              <canvas
+                ref={canvasRef}
+                style={{ width: "100%", aspectRatio: 1 }}
+              />
+              <div className="large-space"></div>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                }}
+              >
+                <SeletorDeConfianca />
+              </div>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );

@@ -11,8 +11,8 @@ const SeletorDeConfianca: FC = () => {
   return (
     <div
       style={{
-        width: "100%",
-        maxWidth: "300px",
+        width: "90%",
+        maxWidth: "400px",
         margin: 0,
         marginTop: 24,
         display: "flex",
@@ -23,7 +23,7 @@ const SeletorDeConfianca: FC = () => {
       <h5 className="small">Grau de Confiança</h5>
       <div
         className="field"
-        style={{ width: "100%", maxWidth: "300px", margin: 0 }}
+        style={{ width: "90%", maxWidth: "400px", margin: 0 }}
       >
         <label className="slider">
           <input

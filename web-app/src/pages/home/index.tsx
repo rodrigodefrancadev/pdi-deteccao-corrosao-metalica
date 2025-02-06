@@ -271,7 +271,7 @@ const MaisInformacoesContent: FC = () => {
       <div className="large-space"></div>
       <Participantes />
       <div className="large-space"></div>
-      <p className="small">v${versao}</p>
+      <p className="small">v{versao}</p>
       <div className="large-space"></div>
     </>
   );
